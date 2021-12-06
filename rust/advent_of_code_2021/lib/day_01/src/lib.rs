@@ -16,9 +16,9 @@ fn parse_input(data: &str) -> Vec<u64> {
         .split("\n")
         .map(|s| match s.parse::<u64>() {
             Ok(x) => x,
-            Err(_) => -1,
+            Err(_) => u64::MAX,
         })
-        .filter(|n| n == -1)
+        .filter(|n| *n == u64::MAX)
         .collect()
 }
 
