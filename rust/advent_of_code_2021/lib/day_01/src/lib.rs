@@ -18,7 +18,7 @@ fn parse_input(data: &str) -> Vec<u64> {
             Ok(x) => x,
             Err(_) => u64::MAX,
         })
-        .filter(|n| *n == u64::MAX)
+        .filter(|n| n.ne(&u64::MAX))
         .collect()
 }
 
@@ -39,6 +39,13 @@ mod tests {
         let sample_data = "123\n456\n789";
         let resulting_data = parse_input(sample_data);
         assert_eq!(resulting_data, [123,456,789]);
+    }
+
+    #[test]
+    fn it_omits_invalid_lines() {
+        let sample_data = "123\nstring\n12.3\n456";
+        let resulting_data = parse_input(sample_data);
+        assert_eq!(resulting_data, [123,456]);
     }
 
     #[test]
